@@ -4,17 +4,17 @@ import http from "http";
 import * as logger from "./utils/logger.js";
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 registerServer();
 
 app.use(express.urlencoded({ extended: true }));
 
 const urls = {
-    twitter: "https://twitter.com/mazzdevs",
-    github: "https://github.com/mazzlabs",
+    twitter: "https://twitter.com/playboifowled",
+    github: "https://github.com/fowled",
     mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.commands",
-    self: "https://github.com/mazzlabs/go"
+    self: "https://github.com/fowled/go"
 };
 
 app.get("/", async (req, res) => {
