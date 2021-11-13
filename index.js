@@ -19,7 +19,7 @@ const urls = {
     self: "https://github.com/fowled/go"
 };
 
-http.get("*", async (req, res) => {
+app.get("*", async (req, res) => {
     res.redirect(`https://${req.headers.host}${req.url}`);
 });
 
