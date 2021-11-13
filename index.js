@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 const urls = {
     twitter: "https://twitter.com/playboifowled",
     github: "https://github.com/fowled",
-    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=b>
+    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.commands",
     self: "https://github.com/fowled/go"
 };
 
