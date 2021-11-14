@@ -6,21 +6,23 @@ import fs from "fs";
 import * as logger from "./utils/logger.js";
 
 const app = express();
-const port = 443;
+const secureport = 443;
+const port = 80;
 
 registerServers();
 
 app.use(express.urlencoded({ extended: true }));
+app.enable("trust proxy");
 
 const urls = {
     twitter: "https://twitter.com/playboifowled",
     github: "https://github.com/fowled",
-    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.commands",
+    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.command>
     self: "https://github.com/fowled/go"
 };
 
-http.get("*", async (req, res) => {
-    res.redirect(`https://${req.headers.host}${req.url}`);
+app.use(async (req, res, next) => {
+    req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
 });
 
 app.get("/", async (req, res) => {
@@ -36,8 +38,8 @@ app.get("/:url/", async (req, res) => {
 });
 
 function registerServers() {
-    const httpServer = http.createServer(app).listen(80).on("listening", () => {
-        logger.log("HTTP server listening on port 80");
+    const httpServer = http.createServer(app).listen(port).on("listening", () => {
+        logger.log(`HTTP server listening on port ${port}`);
     });
     
     const httpsServer = https.createServer({
@@ -45,7 +47,7 @@ function registerServers() {
         cert: fs.readFileSync('/etc/letsencrypt/live/go.fowled.club/fullchain.pem'),
     }, app);
 
-    httpsServer.listen(port, () => {
-        logger.log(`HTTPS server listening on port ${port}`);
+    httpsServer.listen(secureport, () => {
+        logger.log(`HTTPS server listening on port ${secureport}`);
     });
 }
