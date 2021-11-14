@@ -17,7 +17,7 @@ app.enable("trust proxy");
 const urls = {
     twitter: "https://twitter.com/playboifowled",
     github: "https://github.com/fowled",
-    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.command>
+    mango: "https://discord.com/api/oauth2/authorize?client_id=497443144632238090&permissions=268758135&scope=bot%20applications.commands",
     self: "https://github.com/fowled/go"
 };
 
