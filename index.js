@@ -19,7 +19,7 @@ const urls = {
     self: "https://github.com/fowled/go"
 };
 
-app.get("*", async (req, res) => {
+http.get("*", async (req, res) => {
     res.redirect(`https://${req.headers.host}${req.url}`);
 });
 
@@ -35,7 +35,7 @@ app.get("/:url/", async (req, res) => {
     }
 });
 
-function registerServer() {
+function registerServers() {
     const httpServer = http.createServer(app).listen(80).on("listening", () => {
         logger.log("HTTP server listening on port 80");
     });
